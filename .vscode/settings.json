@@ -1,0 +1,35 @@
+{
+  // 🔥 WebDevStudios - Your Success Is Our Mission. 🌮
+  "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
+  "workbench.colorCustomizations": {
+    "titleBar.activeForeground": "#ffffff",
+    "titleBar.inactiveForeground": "#ffffff",
+    "titleBar.activeBackground": "#002912",
+    "titleBar.inactiveBackground": "#300000cc"
+  },
+
+  // Enable format with prettier on save, configure import organizing.
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // "prettier.disableLanguages": ["javascript", "javascriptreact"],
+
+  // EsLint
+  "eslint.alwaysShowStatus": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+    //"source.organizeImports": true
+  },
+
+  // This will get emmet working in JSX.
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  }
+}
