@@ -11,8 +11,8 @@ export default function Voz() {
 
   const handleCambioTexto = (e) => {
     const nuevoContenido = e.target.value
-    const contenidoSinAcentos = quitarAcentos(nuevoContenido)
-    setInputText(contenidoSinAcentos)
+    //const contenidoSinAcentos = quitarAcentos(nuevoContenido)
+    setInputText(nuevoContenido)
     if (nuevoContenido.trim() === '') {
       setAltura('auto')
     } else {
