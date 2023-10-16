@@ -1,40 +1,40 @@
 import { useState } from 'react'
 import Speech from 'react-text-to-speech'
+import localFont from 'next/font/local'
+
+const myFont = localFont({ src: './LearningCurve.ttf' })
 
 export default function Voz() {
   const [inputText, setInputText] = useState('')
 
   return (
     <>
-      <textarea
-        className="text-black"
-        rows="5"
-        cols="50"
-        placeholder="Escribe aqui"
-        onChange={(e) => setInputText(e.target.value)}
-      />
-      <Speech
-        text={`${inputText}`}
-        pitch={1.5}
-        rate={1}
-        volume={1}
-        onError={() => console.error('Browser not supported!')}
-      >
-        {({ speechStatus, start, pause }) => (
-          <div>
-            {speechStatus !== 'started' && (
-              <button className="my-start-btn" onClick={start}>
-                Start
-              </button>
+      <div class="flex flex-col h-screen p-2">
+        <div class="flex justify-center items-center ">
+          <Speech
+            text={`${inputText}`}
+            rate={1}
+            volume={1}
+            onError={() => console.error('Browser not supported!')}
+          >
+            {({ speechStatus, start, pause }) => (
+              <div>
+                {speechStatus !== 'started' && (
+                  <button onClick={start}>Play</button>
+                )}
+                {speechStatus === 'started' && (
+                  <button onClick={pause}>Stop</button>
+                )}
+              </div>
             )}
-            {speechStatus === 'started' && (
-              <button className="my-pause-btn" onClick={pause}>
-                Pause
-              </button>
-            )}
-          </div>
-        )}
-      </Speech>
+          </Speech>
+        </div>
+        <textarea rows="3"
+          className={`w-full ${myFont.className} font-sans block text-black text-9xl border border-gray-300 p-1`}
+          placeholder="Escribe aqui"
+          onChange={(e) => setInputText(e.target.value)}
+        />
+      </div>
     </>
   )
 }
