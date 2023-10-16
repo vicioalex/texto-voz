@@ -11,6 +11,7 @@ export default function Voz() {
   const [letra, setLetra] = useState(myFont.className)
   const [enMayusculas, setEnMayusculas] = useState(false)
   const [font, setFont] = useState('text-8xl')
+  const [lineHeight, setLineHeight] = useState('1')
 
   const handleCambioTexto = (e) => {
     const nuevoContenido = e.target.value
@@ -46,7 +47,8 @@ export default function Voz() {
     } else {
       setInputText(inputText.toUpperCase())
       setLetra('')
-      setFont('text-4xl')
+      setFont('text-6xl')
+      setLineHeight('1.8')
     }
   }
 
@@ -55,7 +57,7 @@ export default function Voz() {
       <div className="flex flex-col h-screen p-2">
         <textarea
           style={{
-            lineHeight: '1',
+            lineHeight: lineHeight,
             border: 'none',
             paddingTop: '10px',
             paddingLeft: '5px',
