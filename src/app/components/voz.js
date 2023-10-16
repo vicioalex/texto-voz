@@ -27,10 +27,11 @@ export default function Voz() {
             lineHeight: '0.6',
             border: 'none',
             paddingTop: '10px',
+            paddingLeft: '10px',
             height: altura,
           }}
-          className={`w-full ${myFont.className} font-sans block text-black text-9xl border-none hover:border-none`}
-          placeholder="Escribe aqui"
+          className={`w-full ${myFont.className} font-sans block text-black text-8xl border-none hover:border-none`}
+          placeholder="Katherine"
           onChange={handleCambioTexto}
         />
         <div className="flex justify-center items-center ">
