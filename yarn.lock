@@ -596,6 +596,11 @@ react-speech-kit@^3.0.1:
   resolved "https://registry.yarnpkg.com/react-speech-kit/-/react-speech-kit-3.0.1.tgz#8bd936adfe064be1c5a07e2992dfdfd772e80d14"
   integrity sha512-MXNOciISanhmnxpHJkBOev3M3NPDpW1T7nTc/eGw5pO9cXpoUccRxZkmr/IlpTPbPEneDNeTmbwri/YweyctZg==
 
+react-text-to-speech@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/react-text-to-speech/-/react-text-to-speech-0.5.2.tgz#853054e232197160e89a2179b3508a17cc702dc9"
+  integrity sha512-TwvZqbHpLTJnIi/5r7l7mttd+4Xz3bPyndDtWGbp6wF8Qycu8cQLlTnARIociSqWHlwyelSjqV+tgMNrRvrUzQ==
+
 react@^18:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"

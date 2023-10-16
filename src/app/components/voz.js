@@ -1,16 +1,11 @@
 import { useState } from 'react'
-import { useSpeechSynthesis } from 'react-speech-kit'
+import Speech from 'react-text-to-speech'
 
 export default function Voz() {
-  const { speak } = useSpeechSynthesis()
   const [inputText, setInputText] = useState('')
 
-  function handleSpeak() {
-    speak({ text: inputText })
-  }
-
   return (
-    <div>
+    <>
       <textarea
         className="text-black"
         rows="5"
@@ -18,7 +13,28 @@ export default function Voz() {
         placeholder="Escribe aqui"
         onChange={(e) => setInputText(e.target.value)}
       />
-      <button onClick={() => handleSpeak()}>Speak</button>
-    </div>
+      <Speech
+        text={`${inputText}`}
+        pitch={1.5}
+        rate={1}
+        volume={1}
+        onError={() => console.error('Browser not supported!')}
+      >
+        {({ speechStatus, start, pause }) => (
+          <div>
+            {speechStatus !== 'started' && (
+              <button className="my-start-btn" onClick={start}>
+                Start
+              </button>
+            )}
+            {speechStatus === 'started' && (
+              <button className="my-pause-btn" onClick={pause}>
+                Pause
+              </button>
+            )}
+          </div>
+        )}
+      </Speech>
+    </>
   )
 }
