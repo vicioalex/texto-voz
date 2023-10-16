@@ -11,16 +11,22 @@ export default function Voz() {
 
   const handleCambioTexto = (e) => {
     const nuevoContenido = e.target.value
-    setInputText(nuevoContenido)
+    const contenidoSinAcentos = quitarAcentos(nuevoContenido)
+    setInputText(contenidoSinAcentos)
     if (nuevoContenido.trim() === '') {
       setAltura('auto')
     } else {
       setAltura(`${e.target.scrollHeight}px`)
     }
   }
+  // Función para borrar texto
   const handleBorrarTexto = () => {
     setAltura('auto')
     setInputText('')
+  }
+  // Función para quitar acentos
+  const quitarAcentos = (texto) => {
+    return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
   }
 
   return (
