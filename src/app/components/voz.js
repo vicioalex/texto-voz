@@ -43,12 +43,13 @@ export default function Voz() {
     if (enMayusculas) {
       setLetra(myFont.className)
       setFont('text-8xl')
+      setLineHeight('1')
       setInputText(inputText.toLowerCase())
     } else {
       setInputText(inputText.toUpperCase())
       setLetra('')
       setFont('text-6xl')
-      setLineHeight('1.8')
+      setLineHeight('1.6')
     }
   }
 
