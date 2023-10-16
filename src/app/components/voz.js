@@ -10,8 +10,13 @@ export default function Voz() {
   const [altura, setAltura] = useState('auto')
 
   const handleCambioTexto = (e) => {
-    setInputText(e.target.value)
-    setAltura(`${e.target.scrollHeight}px`)
+    const nuevoContenido = e.target.value
+    setInputText(nuevoContenido)
+    if (nuevoContenido.trim() === '') {
+      setAltura('auto')
+    } else {
+      setAltura(`${e.target.scrollHeight}px`)
+    }
   }
 
   return (
@@ -24,7 +29,7 @@ export default function Voz() {
             paddingTop: '10px',
             height: altura,
           }}
-          className={`w-full ${myFont.className} font-sans block text-black text-9xl border-none`}
+          className={`w-full ${myFont.className} font-sans block text-black text-9xl border-none hover:border-none`}
           placeholder="Escribe aqui"
           onChange={handleCambioTexto}
         />
