@@ -9,8 +9,8 @@ export default function Voz() {
 
   return (
     <>
-      <div class="flex flex-col h-screen p-2">
-        <div class="flex justify-center items-center ">
+      <div className="flex flex-col h-screen p-2">
+        <div className="flex justify-center items-center ">
           <Speech
             text={`${inputText}`}
             rate={1}
@@ -29,10 +29,13 @@ export default function Voz() {
             )}
           </Speech>
         </div>
-        <textarea rows="3"
-          className={`w-full ${myFont.className} font-sans block text-black text-9xl border border-gray-300 p-1`}
+        <textarea
+        style={{ lineHeight: '0.7' }}
+          rows="3"
+          className={`w-full ${myFont.className} font-sans block text-black text-8xl border-none`}
           placeholder="Escribe aqui"
           onChange={(e) => setInputText(e.target.value)}
+          
         />
       </div>
     </>
