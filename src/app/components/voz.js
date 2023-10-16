@@ -32,7 +32,7 @@ export default function Voz() {
         <textarea
           style={{ lineHeight: '0.7', border: 'none', paddingTop: '10px' }}
           rows="5"
-          className={`w-full ${myFont.className} font-sans block text-black text-8xl border-none`}
+          className={`w-full ${myFont.className} font-sans block text-black text-9xl border-none`}
           placeholder="Escribe aqui"
           onChange={(e) => setInputText(e.target.value)}
         />
