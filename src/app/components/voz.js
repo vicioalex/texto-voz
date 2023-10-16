@@ -10,6 +10,7 @@ export default function Voz() {
   const [altura, setAltura] = useState('auto')
   const [letra, setLetra] = useState(myFont.className)
   const [enMayusculas, setEnMayusculas] = useState(false)
+  const [font, setFont] = useState('text-8xl')
 
   const handleCambioTexto = (e) => {
     const nuevoContenido = e.target.value
@@ -40,10 +41,12 @@ export default function Voz() {
     setEnMayusculas(!enMayusculas)
     if (enMayusculas) {
       setLetra(myFont.className)
+      setFont('text-8xl')
       setInputText(inputText.toLowerCase())
     } else {
       setInputText(inputText.toUpperCase())
       setLetra('')
+      setFont('text-4xl')
     }
   }
 
@@ -52,14 +55,14 @@ export default function Voz() {
       <div className="flex flex-col h-screen p-2">
         <textarea
           style={{
-            lineHeight: '0.8',
+            lineHeight: '1',
             border: 'none',
             paddingTop: '10px',
             paddingLeft: '5px',
             height: altura,
           }}
           value={inputText}
-          className={`w-full ${letra} font-sans block text-black text-8xl border-none hover:border-none`}
+          className={`w-full ${letra} font-sans block text-black ${font} border-none hover:border-none`}
           placeholder="Katherine"
           onChange={handleCambioTexto}
         />
