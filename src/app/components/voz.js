@@ -7,16 +7,26 @@ const myFont = localFont({ src: './LearningCurve.ttf' })
 
 export default function Voz() {
   const [inputText, setInputText] = useState('')
+  const [altura, setAltura] = useState('auto')
+
+  const handleCambioTexto = (e) => {
+    setInputText(e.target.value)
+    setAltura(`${e.target.scrollHeight}px`)
+  }
 
   return (
     <>
       <div className="flex flex-col h-screen p-2">
         <textarea
-          style={{ lineHeight: '0.6', border: 'none', paddingTop: '10px' }}
-          rows="4"
+          style={{
+            lineHeight: '0.6',
+            border: 'none',
+            paddingTop: '10px',
+            height: altura,
+          }}
           className={`w-full ${myFont.className} font-sans block text-black text-9xl border-none`}
           placeholder="Escribe aqui"
-          onChange={(e) => setInputText(e.target.value)}
+          onChange={handleCambioTexto}
         />
         <div className="flex justify-center items-center ">
           <Speech
