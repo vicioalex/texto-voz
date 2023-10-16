@@ -8,6 +8,8 @@ const myFont = localFont({ src: './LearningCurve.ttf' })
 export default function Voz() {
   const [inputText, setInputText] = useState('')
   const [altura, setAltura] = useState('auto')
+  const [letra, setLetra] = useState(myFont.className)
+  const [enMayusculas, setEnMayusculas] = useState(false)
 
   const handleCambioTexto = (e) => {
     const nuevoContenido = e.target.value
@@ -24,9 +26,25 @@ export default function Voz() {
     setAltura('auto')
     setInputText('')
   }
+  // Función para borrar texto
+  const handleMayuscula = () => {
+    setLetra('')
+    setInputText(inputText.toUpperCase())
+  }
   // Función para quitar acentos
   const quitarAcentos = (texto) => {
     return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  }
+  // Mayuscula
+  const toggleMayusculas = () => {
+    setEnMayusculas(!enMayusculas)
+    if (enMayusculas) {
+      setLetra(myFont.className)
+      setInputText(inputText.toLowerCase())
+    } else {
+      setInputText(inputText.toUpperCase())
+      setLetra('')
+    }
   }
 
   return (
@@ -41,7 +59,7 @@ export default function Voz() {
             height: altura,
           }}
           value={inputText}
-          className={`w-full ${myFont.className} font-sans block text-black text-8xl border-none hover:border-none`}
+          className={`w-full ${letra} font-sans block text-black text-8xl border-none hover:border-none`}
           placeholder="Katherine"
           onChange={handleCambioTexto}
         />
@@ -81,6 +99,15 @@ export default function Voz() {
             <Image
               className="pl-4"
               src="/borrador.png"
+              width={85}
+              height={85}
+              alt="Picture of the author"
+            />
+          </button>
+          <button onClick={toggleMayusculas}>
+            <Image
+              className="pl-4"
+              src="/mayuscula.png"
               width={85}
               height={85}
               alt="Picture of the author"
