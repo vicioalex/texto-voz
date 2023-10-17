@@ -17,6 +17,7 @@ export default function Silabas({ title }) {
       })
       const data = await response.json()
       setResult(data)
+      //console.log(data)
     } catch (error) {
       alert(error.message)
       return

@@ -21,18 +21,23 @@ export async function POST(request) {
   }
 
   try {
-    const response = await openai.createCompletion({
-      model: 'text-davinci-003',
+    const response = await openai.createChatCompletion({
+      model: 'gpt-3.5-turbo',
       // prompt: `Separa en silabas  ${body.prompt}`,
-      prompt: `Tengo una frase, coloca en un arreglo cada palabra y que este separada en silabas por guiones: ${body.prompt}`,
-      temperature: 0.8,
-      max_tokens: 60,
-      top_p: 1.0,
-      frequency_penalty: 0.0,
-      presence_penalty: 0.0,
+      //prompt: `Tengo una frase, coloca en un arreglo cada palabra y que este separada en silabas por guiones: ${body.prompt}`,
+      messages: [
+        {
+          role: 'user',
+          content: `Por favor, separa la siguiente frase en sílabas: '${body.prompt}'.`,
+        },
+      ],
+      temperature: 1,
+      max_tokens: 2000,
+      top_p: 1,
     })
+    console.log(response.data.choices[0].message.content)
 
-    return NextResponse.json(response.data.choices[0].text)
+    return NextResponse.json(response.data.choices[0].message.content)
   } catch (error) {
     return NextResponse.error(error, { status: 500 })
   }
