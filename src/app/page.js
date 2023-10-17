@@ -2,10 +2,12 @@
 
 import Voz from './components/voz'
 
-export default function Home() {
+function Home() {
   return (
-      <div className="flex justify-center items-center h-screen">
-    <Voz />
-      </div>
+    <div className="flex justify-center items-center h-screen">
+      <Voz />
+    </div>
   )
 }
+
+export default Home
