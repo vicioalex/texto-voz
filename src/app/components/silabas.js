@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import localFont from 'next/font/local'
 
+const myFont = localFont({ src: './LearningCurve.ttf' })
 export default function Silabas({ title }) {
   const [prompt, setPrompt] = useState('')
   const [result, setResult] = useState()
@@ -16,8 +18,10 @@ export default function Silabas({ title }) {
         body: JSON.stringify({ prompt }),
       })
       const data = await response.json()
-      setResult(data)
-      //console.log(data)
+      const mensaje = arreglarMensaje(data)
+      const mensaje1 = mensaje.split(' ')
+      setResult(mensaje)
+      console.log(mensaje1)
     } catch (error) {
       alert(error.message)
       return
@@ -30,6 +34,10 @@ export default function Silabas({ title }) {
   const onSubmit = async (e) => {
     e.preventDefault()
     generateJoke(title)
+  }
+
+  const arreglarMensaje = (texto) => {
+    return texto.replace(/[-/|_]/g, ' ')
   }
 
   return (
@@ -52,7 +60,8 @@ export default function Silabas({ title }) {
       >
         {loading ? 'Thinking...' : 'Silabas'}
       </button>
-      {result && <p>{result}</p>}
+      {/* {result && <p className={`${myFont.className} text-8xl`}>{result}</p>} */}
+      {result && <p className={`${myFont.className} text-8xl`}>{result}</p>}
     </form>
   )
 }
