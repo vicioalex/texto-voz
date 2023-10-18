@@ -28,10 +28,10 @@ export async function POST(request) {
       messages: [
         {
           role: 'user',
-          content: `Por favor, separa la siguiente frase en sílabas: '${body.prompt}'.`,
+          content: `Por favor, separa la siguiente oracion en sílabas, tomando en cuenta las reglas de separar en silabas segun la RAE: ${body.prompt}.`,
         },
       ],
-      temperature: 1,
+      temperature: 0.8,
       max_tokens: 2000,
       top_p: 1,
     })
