@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Speech from 'react-text-to-speech'
 import localFont from 'next/font/local'
 import Image from 'next/image'
@@ -14,6 +14,8 @@ export default function Voz() {
   const [font, setFont] = useState('text-8xl')
   const [lineHeight, setLineHeight] = useState('1')
 
+  const textAreaRef = useRef(null)
+
   const handleCambioTexto = (e) => {
     const nuevoContenido = e.target.value
     //const contenidoSinAcentos = quitarAcentos(nuevoContenido)
@@ -28,6 +30,7 @@ export default function Voz() {
   const handleBorrarTexto = () => {
     setAltura('auto')
     setInputText('')
+    textAreaRef.current ? textAreaRef.current.focus() : null
   }
   // Función para quitar acentos
   const quitarAcentos = (texto) => {
@@ -41,17 +44,20 @@ export default function Voz() {
       setFont('text-8xl')
       setLineHeight('1')
       setInputText(inputText.toLowerCase())
+      textAreaRef.current ? textAreaRef.current.focus() : null
     } else {
       setInputText(inputText.toUpperCase())
       setLetra('')
       setFont('text-6xl')
       setLineHeight('1.6')
+      textAreaRef.current ? textAreaRef.current.focus() : null
     }
   }
 
   return (
     <div className="flex flex-col h-screen p-2">
       <textarea
+        ref={textAreaRef}
         style={{
           lineHeight: lineHeight,
           border: 'none',
