@@ -31,8 +31,8 @@ export async function POST(request) {
           content: `Por favor, separa la siguiente oracion en sílabas, tomando en cuenta las reglas de separar en silabas segun la RAE: ${body.prompt}.`,
         },
       ],
-      temperature: 0.8,
-      max_tokens: 2000,
+      temperature: 0.5,
+      max_tokens: 1000,
       top_p: 1,
     })
     console.log(response.data.choices[0].message.content)
