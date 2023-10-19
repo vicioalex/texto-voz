@@ -77,31 +77,34 @@ export default function Silabas({ title }) {
   // iconos SVG
   const svgCode = (
     <path
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+      fill="white" // Cambia el color de relleno aquí
+      stroke="gray"
+      stroke-width="1"
+      d="M50.72 21.98l0 16.26c0,7.24 -5.04,6.72 -9.24,3.32l-14.07 -11.38 -0.02 11.56c-0,3.11 -5.52,2.39 -8.59,-0.25l-17.54 -15.1c-0.91,-0.79 -1.26,-2.34 -1.26,-4.41 0,-2.07 0.34,-3.62 1.26,-4.41l17.54 -15.1c3.07,-2.65 8.59,-3.36 8.59,-0.25l0.02 11.56 14.07 -11.38c4.2,-3.4 9.24,-3.92 9.24,3.32l0 16.26z"
     />
   )
 
   return (
     <>
       <div className="grid grid-cols-5 gap-0 bg-black bg-opacity-20">
-        <div className="col-span-5">Columna 1</div>
+        <div className="col-span-5 bg-white bg-opacity-40 h-3"></div>
+        <div className="flex items-center justify-center"></div>
         <div className="flex items-center justify-center">
-          <button className="flex items-center justify-center p-2 text-white">
-            <SVGIcon svgCode={svgCode} width="24" height="24" fill="none" />
+          <button
+            onClick={retroceder}
+            disabled={indice === 0}
+            className="flex items-center justify-center p-2 text-white"
+          >
+            <SVGIcon
+              svgCode={svgCode}
+              width="40"
+              height="40"
+              fill="none"
+              viewBox="0 0 50.72 43.96"
+            />
           </button>
         </div>
-        <div className="flex items-center justify-center">Columna 2</div>
-        <div className="flex items-center justify-center">Columna 3</div>
-        <div className="flex items-center justify-center">Columna 4</div>
-        <div className="flex items-center justify-center">Columna 5</div>
-      </div>
-      <button onClick={retroceder} disabled={indice === 0}>
-        Retroceder
-      </button>
-      <form onSubmit={onSubmit}>
+        <div className="flex items-center justify-center"><form onSubmit={onSubmit}>
         <input
           style={{
             display: 'none',
@@ -121,11 +124,22 @@ export default function Silabas({ title }) {
           {loading ? 'Cargando...' : 'Silabas'}
         </button>
         {/* {result && elementoRenderizado} */}
-      </form>
-      <button onClick={avanzar} disabled={indice === silabas.length - 1}>
-        Avanzar
-      </button>
-
+      </form></div>
+        <div className="flex items-center justify-center">
+          <button onClick={avanzar} disabled={indice === silabas.length - 1} className="flex items-center justify-center p-2 text-white">
+            <SVGIcon
+              svgCode={svgCode}
+              width="40"
+              height="40"
+              fill="none"
+              viewBox="0 0 50.72 43.96"
+              style={{ transform: 'scaleX(-1)' }}
+            />
+          </button>
+        </div>
+        <div className="flex items-center justify-center"></div>
+      </div>
+      
       <div
         style={{
           lineHeight: 0.7,
