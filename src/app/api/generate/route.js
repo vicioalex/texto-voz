@@ -28,14 +28,14 @@ export async function POST(request) {
       messages: [
         {
           role: 'user',
-          content: `Separa la siguiente oracion en sílabas, tomando en cuenta las reglas de separar en silabas segun la Real Academia Española (RAE): '${body.prompt}'.`,
+          content: `Separa la siguiente oracion en sílabas, tomando en cuenta las reglas de separar en sílaba segun la Real Academia Española (RAE): '${body.prompt}'. Respondeme solo las sílabas`,
         },
       ],
       temperature: 1,
-      max_tokens: 2000,
+      max_tokens: 30,
       top_p: 0.8,
     })
-    console.log(response.data.choices[0].message.content)
+    // console.log(response.data.choices[0].message.content)
 
     return NextResponse.json(response.data.choices[0].message.content)
   } catch (error) {

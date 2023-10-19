@@ -4,7 +4,7 @@ import Voz from './components/voz'
 
 function Home() {
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="mx-auto max-w-screen-lg">
       <Voz />
     </div>
   )

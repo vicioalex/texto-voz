@@ -12,7 +12,7 @@ export default function Voz() {
   const [letra, setLetra] = useState(myFont.className)
   const [enMayusculas, setEnMayusculas] = useState(false)
   const [font, setFont] = useState('text-8xl')
-  const [lineHeight, setLineHeight] = useState('1')
+  const [lineHeight, setLineHeight] = useState('0.9')
 
   const textAreaRef = useRef(null)
 
@@ -42,7 +42,7 @@ export default function Voz() {
     if (enMayusculas) {
       setLetra(myFont.className)
       setFont('text-8xl')
-      setLineHeight('1')
+      setLineHeight('0.9')
       setInputText(inputText.toLowerCase())
       textAreaRef.current ? textAreaRef.current.focus() : null
     } else {
@@ -55,7 +55,7 @@ export default function Voz() {
   }
 
   return (
-    <div className="flex flex-col h-screen p-2">
+    <div className="flex flex-col h-screen">
       <textarea
         ref={textAreaRef}
         style={{
@@ -73,7 +73,7 @@ export default function Voz() {
       <div className="flex justify-center items-center ">
         <Speech
           text={`${inputText}`}
-          rate={1}
+          rate={0.8}
           volume={1}
           onError={() => console.error('Browser not supported!')}
         >
@@ -83,8 +83,8 @@ export default function Voz() {
                 <button onClick={start}>
                   <Image
                     src="/audifono-start.png"
-                    width={70}
-                    height={70}
+                    width={60}
+                    height={60}
                     alt="Picture of the author"
                   />
                 </button>
@@ -93,8 +93,8 @@ export default function Voz() {
                 <button onClick={pause}>
                   <Image
                     src="/audifono-pausa.png"
-                    width={70}
-                    height={70}
+                    width={60}
+                    height={60}
                     alt="Picture of the author"
                   />
                 </button>
@@ -106,8 +106,8 @@ export default function Voz() {
           <Image
             className="pl-4"
             src="/borrador.png"
-            width={85}
-            height={85}
+            width={75}
+            height={75}
             alt="Picture of the author"
           />
         </button>
@@ -115,8 +115,8 @@ export default function Voz() {
           <Image
             className="pl-4"
             src="/mayuscula.png"
-            width={85}
-            height={85}
+            width={75}
+            height={75}
             alt="Picture of the author"
           />
         </button>
