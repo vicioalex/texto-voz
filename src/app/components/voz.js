@@ -73,8 +73,9 @@ export default function Voz() {
       <div className="flex justify-center items-center ">
         <Speech
           text={`${inputText}`}
-          rate={0.8}
+          rate={0.7}
           volume={1}
+          lang="es-ES"
           onError={() => console.error('Browser not supported!')}
         >
           {({ speechStatus, start, pause }) => (

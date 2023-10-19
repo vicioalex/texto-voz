@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import localFont from 'next/font/local'
 import SVGIcon from './SVGIcon'
+import Speech from 'react-text-to-speech'
 
 const myFont = localFont({ src: './LearningCurve.ttf' })
 export default function Silabas({ title }) {
@@ -79,7 +80,7 @@ export default function Silabas({ title }) {
     <path
       fill="white" // Cambia el color de relleno aquí
       stroke="gray"
-      stroke-width="1"
+      strokeWidth="1"
       d="M50.72 21.98l0 16.26c0,7.24 -5.04,6.72 -9.24,3.32l-14.07 -11.38 -0.02 11.56c-0,3.11 -5.52,2.39 -8.59,-0.25l-17.54 -15.1c-0.91,-0.79 -1.26,-2.34 -1.26,-4.41 0,-2.07 0.34,-3.62 1.26,-4.41l17.54 -15.1c3.07,-2.65 8.59,-3.36 8.59,-0.25l0.02 11.56 14.07 -11.38c4.2,-3.4 9.24,-3.92 9.24,3.32l0 16.26z"
     />
   )
@@ -98,39 +99,45 @@ export default function Silabas({ title }) {
             <SVGIcon
               svgCode={svgCode}
               width="40"
-              height="40"
+              height="34"
               fill="none"
               viewBox="0 0 50.72 43.96"
             />
           </button>
         </div>
-        <div className="flex items-center justify-center"><form onSubmit={onSubmit}>
-        <input
-          style={{
-            display: 'none',
-          }}
-          type="text"
-          name="name"
-          placeholder="Enter an programming language"
-          onChange={(e) => setPrompt(e.target.value)}
-          value={title}
-          autoFocus
-        />
-        <button
-          type="submit"
-          className="bg-green-500 p-2 rounded-md block mt-2 disabled:opacity-50 text-white"
-          disabled={!title || loading}
-        >
-          {loading ? 'Cargando...' : 'Silabas'}
-        </button>
-        {/* {result && elementoRenderizado} */}
-      </form></div>
         <div className="flex items-center justify-center">
-          <button onClick={avanzar} disabled={indice === silabas.length - 1} className="flex items-center justify-center p-2 text-white">
+          <form onSubmit={onSubmit}>
+            <input
+              style={{
+                display: 'none',
+              }}
+              type="text"
+              name="name"
+              placeholder="Enter an programming language"
+              onChange={(e) => setPrompt(e.target.value)}
+              value={title}
+              autoFocus
+            />
+            <button
+              type="submit"
+              className="bg-green-500 p-2 rounded-md block mt-2 disabled:opacity-50 text-white"
+              disabled={!title || loading}
+            >
+              {loading ? 'Cargando...' : 'Silabas'}
+            </button>
+            {/* {result && elementoRenderizado} */}
+          </form>
+        </div>
+        <div className="flex items-center justify-center">
+          <button
+            onClick={avanzar}
+            disabled={indice === silabas.length - 1}
+            className="flex items-center justify-center p-2 text-white"
+          >
             <SVGIcon
               svgCode={svgCode}
               width="40"
-              height="40"
+              height="34"
               fill="none"
               viewBox="0 0 50.72 43.96"
               style={{ transform: 'scaleX(-1)' }}
@@ -139,7 +146,7 @@ export default function Silabas({ title }) {
         </div>
         <div className="flex items-center justify-center"></div>
       </div>
-      
+
       <div
         style={{
           lineHeight: 0.7,
@@ -157,7 +164,28 @@ export default function Silabas({ title }) {
                 backgroundColor: indice === i ? 'yellow' : 'transparent',
               }}
             >
-              {`${elemento}`}
+              <Speech
+                text={elemento}
+                rate={0.7}
+                volume={1}
+                lang="es-MX"
+                onError={() => console.error('Browser not supported!')}
+              >
+                {({ speechStatus, start, pause, stop }) => (
+                  <div>
+                    {speechStatus !== 'started' && (
+                      <button className="my-start-btn" onClick={start}>
+                        {`${elemento}`}
+                      </button>
+                    )}
+                    {speechStatus === 'started' && (
+                      <button className="my-pause-btn" onClick={pause}>
+                        {`${elemento}`}
+                      </button>
+                    )}
+                  </div>
+                )}
+              </Speech>
             </span>
           ))}
         </div>
