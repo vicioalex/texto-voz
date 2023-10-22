@@ -119,7 +119,7 @@ export default function Silabas({ title }) {
   const stopBtn = <button className="my-stop-btn"></button>
   const startBtn2 = (
     <button
-      disabled={indice === silabas.length - 1}
+      disabled={indice === 0}
       className="my-start-btn"
       onClick={() => {
         retroceder()
