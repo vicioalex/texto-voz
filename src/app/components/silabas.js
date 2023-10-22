@@ -41,6 +41,7 @@ export default function Silabas({ title }) {
   const onSubmit = async (e) => {
     e.preventDefault()
     generateJoke(title)
+    setIndice(0)
   }
 
   const arreglarMensaje = (texto) => {
@@ -85,25 +86,83 @@ export default function Silabas({ title }) {
     />
   )
 
+  const startBtn = (
+    <button
+      disabled={indice === silabas.length - 1}
+      className="my-start-btn"
+      onClick={() => {
+        avanzar()
+      }}
+    >
+      <SVGIcon
+        svgCode={svgCode}
+        width="40"
+        height="34"
+        fill="none"
+        viewBox="0 0 50.72 43.96"
+        style={{ transform: 'scaleX(-1)' }}
+      />
+    </button>
+  )
+  const pauseBtn = (
+    <button className="my-pause-btn" disabled={true}>
+      <SVGIcon
+        svgCode={svgCode}
+        width="40"
+        height="34"
+        fill="none"
+        viewBox="0 0 50.72 43.96"
+        style={{ transform: 'scaleX(-1)' }}
+      />
+    </button>
+  )
+  const stopBtn = <button className="my-stop-btn"></button>
+  const startBtn2 = (
+    <button
+      disabled={indice === silabas.length - 1}
+      className="my-start-btn"
+      onClick={() => {
+        retroceder()
+      }}
+    >
+      <SVGIcon
+        svgCode={svgCode}
+        width="40"
+        height="34"
+        fill="none"
+        viewBox="0 0 50.72 43.96"
+      />
+    </button>
+  )
+  const pauseBtn2 = (
+    <button className="my-pause-btn" disabled={true}>
+      <SVGIcon
+        svgCode={svgCode}
+        width="40"
+        height="34"
+        fill="none"
+        viewBox="0 0 50.72 43.96"
+      />
+    </button>
+  )
+  const stopBtn2 = <button className="my-stop-btn"></button>
+
   return (
     <>
       <div className="grid grid-cols-5 gap-0 bg-black bg-opacity-20">
         <div className="col-span-5 bg-white bg-opacity-40 h-3"></div>
         <div className="flex items-center justify-center"></div>
         <div className="flex items-center justify-center">
-          <button
-            onClick={retroceder}
-            disabled={indice === 0}
-            className="flex items-center justify-center p-2 text-white"
-          >
-            <SVGIcon
-              svgCode={svgCode}
-              width="40"
-              height="34"
-              fill="none"
-              viewBox="0 0 50.72 43.96"
-            />
-          </button>
+          <Speech
+            text={silabas[indice - 1]}
+            rate={0.9}
+            volume={1}
+            lang="es-ES"
+            startBtn={startBtn2}
+            pauseBtn={pauseBtn2}
+            stopBtn={stopBtn2}
+            onError={() => console.error('Browser not supported!')}
+          />
         </div>
         <div className="flex items-center justify-center">
           <form onSubmit={onSubmit}>
@@ -129,24 +188,19 @@ export default function Silabas({ title }) {
           </form>
         </div>
         <div className="flex items-center justify-center">
-          <button
-            onClick={avanzar}
-            disabled={indice === silabas.length - 1}
-            className="flex items-center justify-center p-2 text-white"
-          >
-            <SVGIcon
-              svgCode={svgCode}
-              width="40"
-              height="34"
-              fill="none"
-              viewBox="0 0 50.72 43.96"
-              style={{ transform: 'scaleX(-1)' }}
-            />
-          </button>
+          <Speech
+            text={silabas[indice + 1]}
+            rate={0.9}
+            volume={1}
+            lang="es-ES"
+            startBtn={startBtn}
+            pauseBtn={pauseBtn}
+            stopBtn={stopBtn}
+            onError={() => console.error('Browser not supported!')}
+          />
         </div>
         <div className="flex items-center justify-center"></div>
       </div>
-
       <div
         style={{
           lineHeight: 0.7,
@@ -166,9 +220,9 @@ export default function Silabas({ title }) {
             >
               <Speech
                 text={elemento}
-                rate={0.7}
+                rate={0.9}
                 volume={1}
-                lang="es-MX"
+                lang="es-ES"
                 onError={() => console.error('Browser not supported!')}
               >
                 {({ speechStatus, start, pause, stop }) => (
@@ -179,9 +233,7 @@ export default function Silabas({ title }) {
                       </button>
                     )}
                     {speechStatus === 'started' && (
-                      <button className="my-pause-btn" onClick={pause}>
-                        {`${elemento}`}
-                      </button>
+                      <button className="my-pause-btn">{`${elemento}`}</button>
                     )}
                   </div>
                 )}
