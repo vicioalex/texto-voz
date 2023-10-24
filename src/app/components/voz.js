@@ -55,7 +55,7 @@ export default function Voz() {
   }
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col">
       <textarea
         ref={textAreaRef}
         style={{

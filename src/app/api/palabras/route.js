@@ -22,18 +22,23 @@ export async function POST(request) {
 
   try {
     const response = await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo',
+      model: 'gpt-4',
       // prompt: `Separa en silabas  ${body.prompt}`,
       //prompt: `Tengo una frase, coloca en un arreglo cada palabra y que este separada en silabas por guiones: ${body.prompt}`,
       messages: [
+        {
+          role: 'system',
+          content:
+            'Eres una inteligencia artificial especializada en la real academia española (RAE)',
+        },
         {
           role: 'user',
           content: `Separa la siguiente oracion en palabras: '${body.prompt}'. Responde solo las palabras`,
         },
       ],
       temperature: 1,
-      max_tokens: 40,
-      top_p: 0.8,
+      max_tokens: 50,
+      top_p: 1,
     })
     // console.log(response.data.choices[0].message.content)
 
