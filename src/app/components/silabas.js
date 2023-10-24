@@ -45,7 +45,9 @@ export default function Silabas({ title }) {
         body: JSON.stringify({ prompt }),
       })
       const data2 = await response2.json()
-      const mensaje1 = data2.split('\n')
+      // const mensaje = arreglarMensaje(data)
+      const mensaje = arreglarMensaje(data)
+      const mensaje1 = mensaje.split(' ')
       setPalabras(mensaje1)
       setResult2(data2)
       console.log(mensaje1)
@@ -67,7 +69,7 @@ export default function Silabas({ title }) {
     //detectar y eliminar palabras seguidas de dos puntos
     texto = texto.replace(/\b\w+(?:-\w+)*:/g, '')
     // Reemplaza los guiones, etc. por espacios regex
-    texto = texto.replace(/\([^)]*\)/g, '').replace(/[:.]/g, '')
+    texto = texto.replace(/\([^)]*\)/g, '').replace(/[:.,\n]/g, '')
     //borra el contenido entre paréntesis regex
     texto = texto.replace(/[-/|_]/g, ' ')
     // Borra mas de dos espacios vacios
