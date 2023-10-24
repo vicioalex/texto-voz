@@ -46,7 +46,7 @@ export default function Silabas({ title }) {
       })
       const data2 = await response2.json()
       // const mensaje = arreglarMensaje(data)
-      const mensaje = arreglarMensaje(data)
+      const mensaje = arreglarMensaje(data2)
       const mensaje1 = mensaje.split(' ')
       setPalabras(mensaje1)
       setResult2(data2)
