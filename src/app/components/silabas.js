@@ -7,8 +7,11 @@ const myFont = localFont({ src: './LearningCurve.ttf' })
 export default function Silabas({ title }) {
   const [prompt, setPrompt] = useState('')
   const [result, setResult] = useState()
+  const [result2, setResult2] = useState()
+  const [datarev, setDatarev] = useState()
   const [loading, setLoading] = useState(false)
   const [silabas, setSilabas] = useState([])
+  const [palabras, setPalabras] = useState([])
   const [indice, setIndice] = useState(0)
 
   const generateJoke = async (prompt) => {
@@ -26,12 +29,28 @@ export default function Silabas({ title }) {
       const mensaje = arreglarMensaje(data)
       const mensaje1 = mensaje.split(' ')
       setResult(mensaje)
+      setDatarev(data)
       setSilabas(mensaje1)
-      console.log(mensaje1)
-      // console.log(mensaje2)
     } catch (error) {
       alert(error.message)
       return
+    }
+    // Llamada a la segunda API
+    try {
+      const response2 = await fetch('/api/palabras', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt }),
+      })
+      const data2 = await response2.json()
+      const mensaje1 = data2.split('\n')
+      setPalabras(mensaje1)
+      setResult2(data2)
+      console.log(mensaje1)
+    } catch (error) {
+      alert('Error en la segunda API: ' + error.message)
     }
 
     setLoading(false)
@@ -45,6 +64,8 @@ export default function Silabas({ title }) {
   }
 
   const arreglarMensaje = (texto) => {
+    //detectar y eliminar palabras seguidas de dos puntos
+    texto = texto.replace(/\b\w+(?:-\w+)*:/g, '')
     // Reemplaza los guiones, etc. por espacios regex
     texto = texto.replace(/\([^)]*\)/g, '').replace(/[:.]/g, '')
     //borra el contenido entre paréntesis regex
@@ -182,7 +203,7 @@ export default function Silabas({ title }) {
               className="bg-green-500 p-2 rounded-md block mt-2 disabled:opacity-50 text-white"
               disabled={!title || loading}
             >
-              {loading ? 'Cargando...' : 'Silabas'}
+              {loading ? 'Cargando...' : 'SILABAS'}
             </button>
             {/* {result && elementoRenderizado} */}
           </form>
@@ -240,6 +261,63 @@ export default function Silabas({ title }) {
               </Speech>
             </span>
           ))}
+        </div>
+      </div>
+      <div className="grid grid-cols-5 gap-0 bg-black bg-opacity-20">
+        <div className="col-span-5 bg-white bg-opacity-40 h-3"></div>
+        <div className="flex items-center justify-center"></div>
+        <div className="flex items-center justify-center"></div>
+        <div className="flex items-center justify-center">
+          <button
+            type="submit"
+            className="bg-green-500 p-2 rounded-md block mt-2 disabled:opacity-50 text-white"
+          >
+            PALABRAS
+          </button>
+        </div>
+        <div className="flex items-center justify-center"></div>
+        <div className="flex items-center justify-center"></div>
+      </div>
+      <div
+        style={{
+          lineHeight: 0.7,
+        }}
+        className={`${myFont.className} w-screen text-8xl mt-5`}
+      >
+        <div className="flex flex-wrap">
+          {palabras.map((elemento, i) => (
+            // <span key={i} style={{ color: indice === i ? 'red' : 'black' }}>
+            <span className={`px-5`} key={i}>
+              <Speech
+                text={elemento}
+                rate={0.9}
+                volume={1}
+                lang="es-ES"
+                onError={() => console.error('Browser not supported!')}
+              >
+                {({ speechStatus, start, pause, stop }) => (
+                  <div>
+                    {speechStatus !== 'started' && (
+                      <button className="my-start-btn" onClick={start}>
+                        {`${elemento}`}
+                      </button>
+                    )}
+                    {speechStatus === 'started' && (
+                      <button className="my-pause-btn">{`${elemento}`}</button>
+                    )}
+                  </div>
+                )}
+              </Speech>
+            </span>
+          ))}
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="w-1/2">
+          <textarea value={datarev} />
+        </div>
+        <div className="w-1/2">
+          <textarea value={result2} />
         </div>
       </div>
     </>

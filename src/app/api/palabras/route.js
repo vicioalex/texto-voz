@@ -28,7 +28,7 @@ export async function POST(request) {
       messages: [
         {
           role: 'user',
-          content: `Separa la siguiente oracion en sílabas, tomando en cuenta las reglas de separar en sílaba segun la Real Academia Española (RAE): '${body.prompt}'. Responde solo las sílabas`,
+          content: `Separa la siguiente oracion en palabras: '${body.prompt}'. Responde solo las palabras`,
         },
       ],
       temperature: 1,
