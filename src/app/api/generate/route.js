@@ -13,16 +13,18 @@ const openai = new OpenAIApi(configuration)
 export async function POST(request) {
   const { req, res } = request
 
-  if (req.method === 'OPTIONS') {
-    res.setHeader(
-      'Access-Control-Allow-Origin',
-      'chrome-extension://ekmeiommogpgdjbhlnhkgglbabicjocd'
-    )
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-    res.status(200).end()
-    return
-  }
+  const allowedOrigin = 'chrome-extension://ekmeiommogpgdjbhlnhkgglbabicjocd';
+
+if (req.headers.origin === allowedOrigin) {
+    res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return;
+    }
+}
+
 
   const body = await request.json()
 
