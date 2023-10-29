@@ -29,11 +29,11 @@ export async function POST(request) {
         {
           role: 'system',
           content:
-            'Eres una inteligencia artificial especializada en la real academia española (RAE)',
+            'Actua como un especialista de la real academia española (RAE)',
         },
         {
           role: 'user',
-          content: `Separa la siguiente oracion en sílabas: '${body.prompt}'. Responde solo las sílabas`,
+          content: `Separa con el signo | las palabras y con guiones las sílabas, la palabra el va junto: '${body.prompt}'. Responde solo las palabras y sílabas`,
         },
       ],
       temperature: 1,
