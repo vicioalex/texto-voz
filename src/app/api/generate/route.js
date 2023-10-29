@@ -14,7 +14,10 @@ export async function POST(request) {
   const { req, res } = request
 
   if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader(
+      'Access-Control-Allow-Origin',
+      'chrome-extension://ekmeiommogpgdjbhlnhkgglbabicjocd'
+    )
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
     res.status(200).end()
