@@ -11,9 +11,19 @@ if (!configuration.apiKey)
 const openai = new OpenAIApi(configuration)
 
 export async function POST(request) {
+  const { req, res } = request
+
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+    res.status(200).end()
+    return
+  }
+
   const body = await request.json()
 
-  //   better error handling
+  // better error handling
   if (!body.prompt || body.prompt.length === 0) {
     return NextResponse.error(new Error('You must provide a prompt'), {
       status: 400,
@@ -23,8 +33,6 @@ export async function POST(request) {
   try {
     const response = await openai.createChatCompletion({
       model: 'gpt-4',
-      // prompt: `Separa en silabas  ${body.prompt}`,
-      //prompt: `Tengo una frase, coloca en un arreglo cada palabra y que este separada en silabas por guiones: ${body.prompt}`,
       messages: [
         {
           role: 'system',
@@ -40,7 +48,6 @@ export async function POST(request) {
       max_tokens: 50,
       top_p: 1,
     })
-    // console.log(response.data.choices[0].message.content)
 
     return NextResponse.json(response.data.choices[0].message.content)
   } catch (error) {
