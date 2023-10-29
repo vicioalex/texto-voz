@@ -1,6 +1,8 @@
+// Importando las dependencias necesarias
 import { Configuration, OpenAIApi } from 'openai'
 import { NextResponse } from 'next/server'
 
+// Configuración de OpenAI
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 })
@@ -10,20 +12,25 @@ if (!configuration.apiKey)
 
 const openai = new OpenAIApi(configuration)
 
+// Función para manejar las solicitudes de pre-vuelo (preflight) CORS
+export async function OPTIONS(request) {
+  const origin = request.headers.get('origin')
+
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Origin': origin || '*',
+      'Access-Control-Allow-Methods': 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    },
+  })
+}
+
+// Función para manejar las solicitudes POST
 export async function POST(request) {
-  const { req, res } = request
-
-  if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-    res.status(200).end()
-    return
-  }
-
   const body = await request.json()
 
-  // better error handling
+  // Mejor manejo de errores
   if (!body.prompt || body.prompt.length === 0) {
     return NextResponse.error(new Error('You must provide a prompt'), {
       status: 400,
