@@ -37,7 +37,7 @@ export async function POST(request) {
         },
       ],
       temperature: 1,
-      max_tokens: 50,
+      max_tokens: 100,
       top_p: 1,
     })
     // console.log(response.data.choices[0].message.content)
