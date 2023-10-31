@@ -225,7 +225,7 @@ export default function Silabas({ title }) {
         </div>
         <div className="flex items-center justify-center"></div>
       </div>
-      <div
+      {/*<div
         style={{
           lineHeight: 0.7,
         }}
@@ -265,27 +265,27 @@ export default function Silabas({ title }) {
             </span>
           ))}
         </div>
-      </div>
+                    </div>*/}
       <div className="grid grid-cols-5 gap-0 bg-black bg-opacity-20">
         <div className="col-span-5 bg-white bg-opacity-40 h-3"></div>
         <div className="flex items-center justify-center"></div>
         <div className="flex items-center justify-center"></div>
         <div className="flex items-center justify-center">
-          <button
+          {/* <button
             type="submit"
             className="bg-green-500 p-2 rounded-md block mt-2 disabled:opacity-50 text-white"
           >
             PALABRAS
-          </button>
+          </button>*/}
         </div>
         <div className="flex items-center justify-center"></div>
         <div className="flex items-center justify-center"></div>
       </div>
       <div
         style={{
-          lineHeight: 0.7,
+          lineHeight: 0.6,
         }}
-        className={`${myFont.className} w-screen text-8xl mt-5`}
+        className={`${myFont.className} w-screen text-6xl mt-5`}
       >
         <div className="flex flex-wrap">
           {palabras.map((elemento, i) => (
@@ -315,14 +315,14 @@ export default function Silabas({ title }) {
           ))}
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      {/*<div className="grid grid-cols-2 gap-4">
         <div className="w-1/2">
           <textarea value={datarev} />
         </div>
         <div className="w-1/2">
           <textarea value={result2} />
         </div>
-      </div>
+      </div>*/}
     </>
   )
 }
