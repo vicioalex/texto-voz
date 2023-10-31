@@ -3,7 +3,8 @@ import localFont from 'next/font/local'
 import SVGIcon from './SVGIcon'
 import Speech from 'react-text-to-speech'
 
-const myFont = localFont({ src: './LearningCurve.ttf' })
+//const myFont = localFont({ src: './LearningCurve.ttf' })
+const myFont = ''
 export default function Silabas({ title }) {
   const [prompt, setPrompt] = useState('')
   const [result, setResult] = useState()
@@ -285,7 +286,7 @@ export default function Silabas({ title }) {
         style={{
           lineHeight: 0.6,
         }}
-        className={`${myFont.className} w-screen text-6xl mt-5`}
+        className={`${myFont.className} w-screen text-5xl mt-5`}
       >
         <div className="flex flex-wrap">
           {palabras.map((elemento, i) => (
