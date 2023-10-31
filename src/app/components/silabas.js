@@ -284,7 +284,7 @@ export default function Silabas({ title }) {
       </div>
       <div
         style={{
-          lineHeight: 0.6,
+          lineHeight: 1.2,
         }}
         className={`${myFont.className} w-screen text-5xl mt-5`}
       >
