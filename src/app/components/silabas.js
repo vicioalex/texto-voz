@@ -17,25 +17,25 @@ export default function Silabas({ title }) {
 
   const generateJoke = async (prompt) => {
     setLoading(true)
-    try {
-      const response = await fetch('/api/generate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ prompt }),
-      })
-      const data = await response.json()
-      // const mensaje = arreglarMensaje(data)
-      const mensaje = arreglarMensaje(data)
-      const mensaje1 = mensaje.split(' ')
-      setResult(mensaje)
-      setDatarev(data)
-      setSilabas(mensaje1)
-    } catch (error) {
-      alert(error.message)
-      return
-    }
+    // try {
+    //   const response = await fetch('/api/generate', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({ prompt }),
+    //   })
+    //   const data = await response.json()
+    //   // const mensaje = arreglarMensaje(data)
+    //   const mensaje = arreglarMensaje(data)
+    //   const mensaje1 = mensaje.split(' ')
+    //   setResult(mensaje)
+    //   setDatarev(data)
+    //   setSilabas(mensaje1)
+    // } catch (error) {
+    //   alert(error.message)
+    //   return
+    // }
     // Llamada a la segunda API
     try {
       const response2 = await fetch('/api/palabras', {
