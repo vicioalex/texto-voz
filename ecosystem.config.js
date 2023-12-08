@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'skf',
+      name: 'texto-voz',
       script: 'npm',
       args: 'start',
       env: {
