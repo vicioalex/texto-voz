@@ -24,8 +24,7 @@
   // EsLint
   "eslint.alwaysShowStatus": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-    //"source.organizeImports": true
+    "source.fixAll.eslint": "explicit"
   },
 
   // This will get emmet working in JSX.
